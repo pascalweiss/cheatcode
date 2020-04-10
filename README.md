@@ -1,0 +1,2 @@
+# cheatcode
+Little code snippets 
