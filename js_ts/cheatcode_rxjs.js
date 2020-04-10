@@ -7,11 +7,18 @@ const { BehaviorSubject } = require('rxjs');
 
 function doSomethingA(obj) { console.log("I do like " + obj); }
 function doSomethingB(obj) { console.log("I don't like " + obj); }
-var targetObject = "";
+var targetObject = "strawberry";
 
 var subject = new BehaviorSubject(targetObject);
 subject.subscribe(doSomethingA);
+
+// output:
+// I do like strawberry
+
 subject.subscribe(doSomethingB);
+
+// output
+// I don't like strawberry
 
 subject.next("cheesecake");
 
