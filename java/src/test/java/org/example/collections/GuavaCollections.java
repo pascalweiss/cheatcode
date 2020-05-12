@@ -1,5 +1,6 @@
 package org.example.collections;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -41,6 +42,10 @@ public class GuavaCollections {
 
     @Test public void maps() {
         Maps.asMap(s2, Object::toString); // creates {10: "10", 11: "11"}
+        ImmutableMap.builder()
+                .put("1",1)
+                .put("2", false)
+                .build();
     }
 
 }
