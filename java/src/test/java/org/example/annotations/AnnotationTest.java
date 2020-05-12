@@ -1,4 +1,4 @@
-package org.example;
+package org.example.annotations;
 
 
 import org.example.annotation.AnnotatedClass;
