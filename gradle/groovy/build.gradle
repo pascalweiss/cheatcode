@@ -1,0 +1,75 @@
+// Java API can be used...
+import java.text.SimpleDateFormat
+
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd")
+System.out.println("hello world " + sdf.format(new Date()))
+
+
+// ... but groovy provides some simplifications
+def sdf2 = new SimpleDateFormat("yyyy-MM-dd") // def is synonym for Object
+println "hello world ${sdf2.format(new Date())}" // interpolation is done with $. Only works with double quotes
+
+
+// Provides functions
+def doubleInt(int i) {
+    i * 2 // last statement is returned
+}
+
+println doubleInt(3)
+
+
+// Provides classes
+class Person {
+    def name
+
+    Person(name) { this.name = name }
+}
+
+def p = new Person("bob")
+
+
+// getters and setters are automatically provided
+p.name = "ross"
+println p.name
+
+
+// Also collections have getters and setters.
+// In maps we can even use the keys
+def map = new HashMap()
+map.foo = "fred"
+println map.foo
+
+
+// Closures are an anonymous block of code that can take arguments, return a value and be assigned to a variable
+// They can be used in higher order functions
+void execClosure(closure) {
+    println closure("PARAM")
+}
+
+Closure echoIt = {
+    "this is the $it"
+}
+execClosure(echoIt)
+execClosure({ "again a $it" })
+
+
+// closures are used extensively
+[1, 2, 3].each { println it * 2 }
+
+
+// Closures keep reference to context object with property "delegate".
+// this can be used to manipulate the bahaviour of an object
+class Foo {
+    String theName
+
+    Foo(theName) { this.theName = theName }
+
+    def executeClosure(Closure c) {
+        c.delegate = this;
+        c()
+    }
+}
+
+def foo = new Foo("alfred")
+// now the property of the foo object is used in the closure
+foo.executeClosure {println "the name of context is: $theName"}
